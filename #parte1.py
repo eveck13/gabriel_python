@@ -20,3 +20,28 @@ for i in range(10):
 
     # Agrega la persona a la lista
     personas.append(persona)
+     # Crea un objeto persona con la información proporcionada
+    persona = {
+        "nombre": nombre,
+        "matrícula": matricula,
+        "especialidad": especialidad
+    }
+
+    # Agrega la persona a la lista
+    personas.append(persona)
+
+# Imprime la información en formato JSON
+print(json.dumps(personas, indent=4))
+
+# Imprime la información en formato YAML
+print(yaml.dump(personas, indent=4))
+
+# Imprime la información en formato XML
+root = ET.Element("personas")
+for persona in personas:
+    persona_node = ET.SubElement(root, "persona")
+    for key, value in persona.items():
+        ET.SubElement(persona_node, key).text = value
+        
+xml_string = ET.tostring(root, encoding="utf-8")
+print(xml_string)
